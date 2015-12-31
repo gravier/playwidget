@@ -10,12 +10,21 @@ Storage.prototype.getObject = function(key) {
 trackBar = function(e) { // Handles clicks on the seekBar
   // Using $(e.currentTarget) to enable multiple seek bars
   $('.temp').remove()
-  var $bar = $(e.currentTarget),
+  var posPercent = getPositionPercent(e.currentTarget, e);
+  addBar(posPercent, '', true);
+}
+
+getPosition = function(target, e) { // Handles clicks on the seekBar
+  var $bar = $(target),
     offset = $bar.offset(),
     x = e.pageX - offset.left,
     w = $bar.width(),
-    pos = 100 * x / w;
-    addBar(pos, '', true);
+    pos = x / w;
+  return pos;
+}
+
+getPositionPercent = function(target, e) { // Handles clicks on the seekBar
+  return getPosition(target, e) * 100;
 }
 
 addBar = function(pos, comment, isTemp){
@@ -24,11 +33,61 @@ addBar = function(pos, comment, isTemp){
     "<div class='mark "+tempClass+"' style='left: "+pos+"%'>"
     +"<span>"+comment+"</span>"
     +"</div>");
-  $('.commentForm').show();
+
+    if(isTemp) {
+      $('.commentForm').show();
+    }
 }
 
+getDuration = function(){
+  var data = $('#jquery_jplayer_1').data('jPlayer');
+  return data.htmlElement.media.duration;
+}
+
+getFilename = function(){
+  var data = $('#jquery_jplayer_1').data('jPlayer');
+  var src = data.htmlElement.media.attributes.src.value;
+  return src.substr(src.lastIndexOf('/') + 1);
+}
+
+// init events
 $(function(){
+  var media = {
+		title: "Podcast",
+		mp3: "http://www.mfiles.co.uk/mp3-downloads/edvard-grieg-peer-gynt1-morning-mood.mp3",
+	}
+	$("#jquery_jplayer_1").jPlayer({
+		ready: function (event) {
+			$(this).jPlayer("setMedia", media);
+        render();
+        // event attached after render
+        $('.mark').mouseenter(showEvent);
+		},
+		swfPath: "../dist/jplayer",
+		supplied: "mp3",
+		wmode: "window",
+		useStateClassSkin: true,
+		autoBlur: false,
+		smoothPlayBar: true,
+		keyEnabled: true,
+		remainingDuration: true,
+		toggleDuration: true
+	});
+
   $('.jp-seek-bar1').click(function(e){ trackBar(e) });
+  $('.mark-play').click(function(e){
+    var pos = $('.mark-selected').attr('style').replace('%', '').split(':')[1].trim('%');
+    var time = getDuration() * pos / 100;
+    $('#jquery_jplayer_1').jPlayer("play", time)
+    $('.comment').hide();
+    $('.mark-play').hide();
+    e.stopPropagation();
+  });
+  $('.comment').click(function(e){
+    $('.comment').hide();
+    $('.mark-play').hide();
+    e.stopPropagation();
+  });
   $('.commentForm__input').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){ // user pressed enter
@@ -37,6 +96,8 @@ $(function(){
       save(pos, comment);
       $('.commentForm').hide();
       $('.commentForm__input').val('');
+      $('.temp').mouseenter(showEvent);
+      $('.temp').find('span').text(comment);
       $('.temp').attr('class', 'mark'); // reset class
     }
 });
@@ -46,8 +107,11 @@ $(function(){
      var offset = $(this).offset();
      var relX = e.pageX - offset.left;
      var pos = relX / $(this).width();
-     var minutes = Math.floor(194 * pos / 60);
-     var seconds = Math.floor(194 * pos % 60);
+     var duration = getDuration();
+     // TODO add missing zero when minute is single digit.
+     // TODO add hour support
+     var minutes = Math.floor(duration * pos / 60);
+     var seconds = Math.floor(duration * pos % 60);
      $('.timer').text('0' + minutes + ':' + seconds)
      $('.timer').css({left: relX})
      $('.marker').css({left: relX})
@@ -56,26 +120,29 @@ $(function(){
     $('.marker').hide();
     $('.timer').hide();
   });
-  render();
-  $('.mark').mouseenter(function(e){
-    var offset = $(this).offset();
-    var relX = e.pageX - offset.left;
-    $('.comment').css({left: relX})
-    $('.comment').text(e.currentTarget.children[0].innerText);
-    $('.comment').show();
-  });
-  $('.mark').mouseleave(function(e){
-    $('.comment').hide();
-  });
+
 });
 
+//events
+showEvent = function(e){
+  var offset = $(this).parent().offset();
+  var relX = e.pageX - offset.left;
+  $('.mark-selected').removeClass('mark-selected'); // mark position
+  $(this).addClass('mark-selected');
+  $('.comment').css({left: relX})
+  $('.comment').text(e.currentTarget.children[0].innerText);
+  $('.comment').show();
+  $('.mark-play').css({left: relX})
+  $('.mark-play').show();
+}
+
 save = function(pos, cmt){
-  var filename = 'edvard-grieg-peer-gynt1-morning-mood.mp3';
+  var filename = getFilename();
   var allMarks = localStorage.getObject('mycast.io-marks');
   var fileMarks = allMarks[filename] || [];
   var mark = {
     position: pos,
-    time: 0,
+    time: getDuration() / 100 * pos,
     comment: cmt
   }
   fileMarks.push(mark);
@@ -84,7 +151,8 @@ save = function(pos, cmt){
 }
 
 render = function(){
-  var filename = 'edvard-grieg-peer-gynt1-morning-mood.mp3';
+  var filename = getFilename();
+  // var filename = 'edvard-grieg-peer-gynt1-morning-mood.mp3';
   var allMarks = localStorage.getObject('mycast.io-marks');
   var fileMarks = allMarks[filename] || [];
 

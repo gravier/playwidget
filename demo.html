@@ -23,31 +23,6 @@
 <script type="text/javascript" src="./demo_files/themeswitcher.js"></script>
 <script type="text/javascript" src="./demo_files/track.bar.js"></script>
 <script type="text/javascript">
-//<![CDATA[
-$(document).ready(function(){
-
-	var media = {
-		title: "Podcast",
-		mp3: "http://www.mfiles.co.uk/mp3-downloads/edvard-grieg-peer-gynt1-morning-mood.mp3",
-	}
-	$("#jquery_jplayer_1").jPlayer({
-		ready: function (event) {
-			$(this).jPlayer("setMedia", media);
-		},
-		swfPath: "../dist/jplayer",
-		supplied: "mp3",
-		wmode: "window",
-		useStateClassSkin: true,
-		autoBlur: false,
-		smoothPlayBar: true,
-		keyEnabled: true,
-		remainingDuration: true,
-		toggleDuration: true
-	});
-
-	//$("#jplayer_inspector").jPlayerInspector({jPlayer:$("#jquery_jplayer_1")});
-});
-//]]>
 </script>
 <body class="demo" onload="prettyPrint();">
 <div id="container">
@@ -80,6 +55,7 @@ $(document).ready(function(){
 							<div class="marker" style="display: none"></div>
 							<div class="timer" style="display: none">01:15</div>
 							<div class="comment" style="display: none"></div>
+							<button class="mark-play" style="display: none">play</button>
 						</div>
 					</div>
 				</div>

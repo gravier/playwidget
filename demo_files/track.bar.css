@@ -34,7 +34,7 @@ div.jp-progress1{
 .mark, .marker {
   display:table-cell;
   height:30px;
-  width: 1px;
+  width: 3px;
   font-size: 0;
   background-color:red;
   position: absolute;
@@ -56,10 +56,18 @@ div.jp-progress1{
 
 .comment{
   display:table-cell;
-  margin-bottom: 10px;
-  margin-left: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
   background-color:white;
+  width: 50px;
   color: black;
+  font-size: 0.7em;
+  position: absolute;
+}
+
+.mark-play{
+  margin-top: 40px;
+  margin-left: 20px;
   font-size: 0.7em;
   position: absolute;
 }
