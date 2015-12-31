@@ -1,0 +1,104 @@
+
+
+.jp-progress1 {
+    background: url(../demo_files/image/jplayer.pink.flag.jpg) 0 -240px no-repeat;
+    width: 197px;
+    height: 30px;
+    padding: 0 2px 2px;
+    margin-bottom: 4px;
+    overflow: hidden
+}
+div.jp-progress1{
+    border-top: 1px solid #180a1f;
+    border-bottom: 1px solid #554560;
+    border-color: inherit;
+    width: 100%;
+    background-image: none;
+    padding: 0
+}
+.jp-seek-bar1 {
+    /*background: url(../demo_files/image/jplayer.pink.flag.jpg) 0 -260px repeat-x;*/
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: silver;
+    cursor: pointer
+}
+.jp-play-bar1 {
+    width: 0;
+    height: 100%;
+    overflow: hidden
+}
+
+/*hover should be easier then targeting 1px*/
+.mark, .marker {
+  display:table-cell;
+  height:30px;
+  width: 1px;
+  font-size: 0;
+  background-color:red;
+  position: absolute;
+  color: white;
+}
+
+/*get insparation from youtube, same thing just without video*/
+/*should expand on changing from 00:00 to 00:00:00*/
+.timer {
+  display:table-cell;
+  height:15px;
+  width: 35px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: 0.7em;
+  background-color:black;
+  position: absolute;
+}
+
+.comment{
+  display:table-cell;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  background-color:white;
+  color: black;
+  font-size: 0.7em;
+  position: absolute;
+}
+
+.commentForm {
+    background: #f2f2f2;
+    border: 1px solid #e5e5e5;
+    padding: 5px 5px 0 5px;
+}
+.commentForm.m-large {
+    width: 445px;
+    height: 40px;
+    margin-top: 7px;
+    opacity: 1;
+    box-sizing: border-box;
+}
+.commentForm__input {
+    width: 400px;
+}
+.commentForm {
+    position: relative;
+    z-index: 3;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    margin-top: 0;
+}
+.commentForm__transition {
+    transition: opacity 300ms,height 300ms,margin 300ms;
+}
+
+.commentForm.m-large {
+    height: 40px;
+    margin-top: 7px;
+    opacity: 1;
+    box-sizing: border-box;
+}
+
+.commentForm.m-active {
+    background: #e5e5e5 none repeat scroll 0 0;
+    border: 1px solid #ccc;
+}
