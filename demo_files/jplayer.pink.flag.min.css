@@ -17,17 +17,15 @@
     font-family: Verdana, Arial, sans-serif;
     line-height: 1.6;
     color: #fff;
-    border-top: 1px solid #554461;
-    border-left: 1px solid #554461;
-    border-right: 1px solid #180a1f;
-    border-bottom: 1px solid #180a1f;
+   
+    
     background-color: #3a2a45
 }
 .jp-audio {
-    width: 401px;
-    height: 120px;
-    padding: 20px
-}
+    width: 100%;
+    height: auto;
+    /* padding: 20px 0px 0px 0px; <----This adds space for the volume controls */
+ }
 .jp-audio-stream {
     width: 101px;
     padding: 20px 20px 10px
@@ -72,7 +70,7 @@
 .jp-interface {
     position: relative;
     width: 100%;
-    background-color: #3a2a45
+    background-image: url(image/top_bg.png);
 }
 .jp-video .jp-controls-holder {
     clear: both;
@@ -82,21 +80,21 @@
     overflow: hidden
 }
 .jp-audio .jp-controls-holder {
-    height: 80px
+    
 }
 .jp-audio-stream .jp-controls-holder {
     height: 50px
 }
 .jp-controls {
-    background: url(../demo_files/image/jplayer.pink.flag.jpg) no-repeat;
+    
     padding: 1px 0 2px 1px;
     overflow: hidden;
     width: 201px;
-    height: 34px
+    height: 51px
 }
 .jp-audio .jp-controls,
 .jp-audio-stream .jp-controls {
-    margin: 0 auto
+    
 }
 .jp-audio-stream .jp-controls {
     width: 100px
@@ -118,29 +116,37 @@
     cursor: pointer
 }
 .jp-type-single .jp-controls button {
-    width: 99px
+        width: 50px;
+    height: 51px;
+        margin-left: 11px;
 }
 .jp-type-single .jp-play {
-    background: url(../demo_files/image/jplayer.pink.flag.jpg) 0 -40px no-repeat
+    background: url(image/play_btn.png);
+}
+.jp-type-single .jp-play:hover {
+    background: url(image/play_btn_hover.png);
 }
 .jp-type-single .jp-play:focus {
-    background: url(../demo_files/image/jplayer.pink.flag.jpg) -100px -40px no-repeat
+   background: url(image/play_btn.png);
 }
 .jp-state-playing .jp-type-single .jp-play {
-    background: url(../demo_files/image/jplayer.pink.flag.jpg) 0 -120px no-repeat
+    background: url(image/pause_btn.png);t
 }
 .jp-state-playing .jp-type-single .jp-play:focus {
-    background: url(../demo_files/image/jplayer.pink.flag.jpg) -100px -120px no-repeat
+    background: url(image/pause_btn.png);
 }
 .jp-audio-stream .jp-pause,
 .jp-audio-stream .jp-play {
     border-right: 1px solid #180920
 }
 .jp-type-single .jp-stop {
-    background: url(../demo_files/image/jplayer.pink.flag.jpg) 0 -80px no-repeat
+    background: url(image/stop_btn.png);
+}
+.jp-type-single .jp-stop:hover {
+    background: url(image/stop_btn_hover.png);
 }
 .jp-type-single .jp-stop:focus {
-    background: url(../demo_files/image/jplayer.pink.flag.jpg) -100px -80px no-repeat
+    background: url(image/stop_btn.png);
 }
 .jp-type-playlist .jp-controls button {
     width: 49px
@@ -249,9 +255,7 @@ div.jp-seeking-bg {
 .jp-progress {
     background: url(../demo_files/image/jplayer.pink.flag.jpg) 0 -240px no-repeat;
     height: 13px;
-    padding: 0 2px 2px;
-    margin-bottom: 4px;
-    overflow: hidden
+    overflow: hidden;
 }
 div.jp-video .jp-progress {
     border-top: 1px solid #180a1f;
@@ -262,14 +266,15 @@ div.jp-video .jp-progress {
 }
 
 .jp-seek-bar {
-    background: url(../demo_files/image/jplayer.pink.flag.jpg) 0 -260px repeat-x;
+    background-color:#bfbfbf;
     width: 0;
     height: 100%;
     overflow: hidden;
     cursor: pointer
 }
 .jp-play-bar {
-    background: url(../demo_files/image/jplayer.pink.flag.jpg) 0 -280px repeat-x;
+    background: url(../demo_files/image/seekBar_loaded.png);
+    background-repeat: repeat-x;
     width: 0;
     height: 100%;
     overflow: hidden
@@ -278,9 +283,9 @@ div.jp-video .jp-progress {
     display: none
 }
 .jp-audio .jp-volume-controls,
-.jp-audio-stream .jp-volume-controls {
+/* .jp-audio-stream .jp-volume-controls {
     height: 30px
-}
+}   */
 .jp-volume-controls button {
     position: absolute;
     display: block;
@@ -295,11 +300,13 @@ div.jp-video .jp-progress {
 }
 .jp-audio .jp-volume-controls .jp-mute,
 .jp-audio-stream .jp-volume-controls .jp-mute {
+    display: none;
     top: -6px;
     left: 0
 }
 .jp-audio .jp-volume-controls .jp-volume-max,
 .jp-audio-stream .jp-volume-controls .jp-volume-max {
+        display: none !important;
     top: -6px;
     right: 0
 }
@@ -341,6 +348,7 @@ div.jp-video .jp-progress {
 }
 .jp-audio .jp-interface .jp-volume-bar,
 .jp-audio-stream .jp-interface .jp-volume-bar {
+    display: none !important;
     top: 10px;
     left: 0
 }
@@ -358,6 +366,7 @@ div.jp-video .jp-progress {
     margin-top: 30px
 }
 .jp-volume-bar-value {
+    display: none !important;
     background: url(../demo_files/image/jplayer.pink.flag.jpg) 0 -320px repeat-x;
     height: 4px
 }
@@ -369,12 +378,22 @@ div.jp-video .jp-progress {
 }
 .jp-current-time {
     float: left;
-    cursor: default
+    cursor: default;
+        left: 0;
+    bottom: 1px;
+    position: absolute;
+    color:white;
+    font-size: 10px;
 }
 .jp-duration {
     float: right;
     text-align: right;
-    cursor: pointer
+    cursor: pointer;
+        right: 0;
+    bottom: 1px;
+    position: absolute;
+    color:white;
+    font-size: 10px;
 }
 .jp-video .jp-current-time {
     padding-left: 20px

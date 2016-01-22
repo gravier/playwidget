@@ -1,0 +1,123 @@
+#content_main > section {
+  border-bottom: 0 none;
+  margin: 0;
+}
+.jp-audio,
+.jp-audio * {
+  box-sizing: border-box;
+}
+.jp-audio {
+  /*width: 50%;
+  margin: 10px auto;*/
+  position: relative;
+  border-left: 3px solid #7988A7;
+  border-right: 3px solid #394251;
+}
+.jp-controls-holder:before,
+.jp-controls-holder:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+.jp-controls {
+  float: left;
+  height: auto;
+  width: auto;
+  padding: 0;
+}
+.jp-progress {
+  height: 25px;
+  background: none;
+}
+.jp-type-single .jp-controls button {
+  height: 94px;
+  width: 122px;
+  margin: 0;
+}
+.jp-controls button:hover {
+  opacity: 0.9;
+}
+.commentForm {
+  padding: 0;
+}
+div.jp-progress1 {
+  width: auto;
+  height: 69px;
+  position: relative;
+  margin: 0;
+}
+.jp-seek-bar1 {
+  background: #121212;
+}
+.jp-duration,
+.jp-current-time {
+  padding: 5px 10px;
+}
+.commentForm__input {
+  height: 40px;
+  border: 0 none;
+  background: transparent;
+}
+.mark,
+.marker {
+  height: 100%;
+  width: 2px;
+  margin: 0;
+  background: #ECECEC none;
+  /*border-left: 1px solid #6D6D6D;
+  border-right: 1px solid #6D6D6D;*/
+  box-shadow: 0px 0px 2px;
+}
+.mark-play {
+  background-color: #E5E5E5;
+  border: 1px solid #E5E5E5;
+  padding: 1px 8px 3px 10px;
+  margin: 30px 0 0 -45px;
+  z-index: 1;
+  border-radius: 2px;
+}
+.timer,
+.comment {
+  z-index: 2;
+}
+.comment {
+  display: none;
+  background: #E5E5E5;
+  width: auto;
+  height: auto;
+  max-width: 250px;
+  max-height: 43px;
+  padding: 5px 5px 5px 5px;
+  margin: 25px 0 0 7px;
+  pointer-events:none;
+  border-radius: 2px;
+  white-space: pre-line;
+}
+.comment:after{
+  content: "x";
+  color: white;
+  width: 14px;
+  height: 14px;
+  line-height: 11px;
+  text-align: center;
+  border-radius: 100%;
+  vertical-align: middle;
+  background-color: #7988A7;
+  border: 2px solid #E5E5E5;
+  pointer-events: auto;
+  position: absolute;
+  cursor: pointer;
+  right: -8px;
+  top: -8px;
+}
+/*
+.mark:hover span{
+  font-size: 10px;
+  top: 50px;
+  left: 15px;
+  position: absolute;
+}
+*/
+.timer {
+  margin-left: -16px;
+}

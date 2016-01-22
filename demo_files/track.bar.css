@@ -9,19 +9,18 @@
     overflow: hidden
 }
 div.jp-progress1{
-    border-top: 1px solid #180a1f;
-    border-bottom: 1px solid #554560;
     border-color: inherit;
     width: 100%;
     background-image: none;
     padding: 0
 }
 .jp-seek-bar1 {
-    /*background: url(../demo_files/image/jplayer.pink.flag.jpg) 0 -260px repeat-x;*/
+    background: url(image/comment_bg.jpg);
+    background-repeat: repeat-x;
+    background-size: 420px 180%;
     width: 0;
     height: 100%;
     overflow: hidden;
-    background-color: silver;
     cursor: pointer
 }
 .jp-play-bar1 {
@@ -33,12 +32,14 @@ div.jp-progress1{
 /*hover should be easier then targeting 1px*/
 .mark, .marker {
   display:table-cell;
-  height:30px;
-  width: 3px;
+  height:26px;
+  margin-top: 4px;
+  width: 35px;
   font-size: 0;
-  background-color:red;
+  background-image: url(image/comment_icon.png);
   position: absolute;
   color: white;
+
 }
 
 /*get insparation from youtube, same thing just without video*/
@@ -48,7 +49,7 @@ div.jp-progress1{
   height:15px;
   width: 35px;
   margin-bottom: 10px;
-  margin-left: 10px;
+  margin-left: 25px;
   font-size: 0.7em;
   background-color:black;
   position: absolute;
@@ -74,18 +75,18 @@ div.jp-progress1{
 
 .commentForm {
     background: #f2f2f2;
-    border: 1px solid #e5e5e5;
-    padding: 5px 5px 0 5px;
+    
+    padding: 5px 5px 0 0;
 }
 .commentForm.m-large {
     width: 445px;
     height: 40px;
-    margin-top: 7px;
+    
     opacity: 1;
     box-sizing: border-box;
 }
 .commentForm__input {
-    width: 400px;
+    width: 100%;
 }
 .commentForm {
     position: relative;
@@ -101,12 +102,12 @@ div.jp-progress1{
 
 .commentForm.m-large {
     height: 40px;
-    margin-top: 7px;
+    
     opacity: 1;
     box-sizing: border-box;
 }
 
 .commentForm.m-active {
     background: #e5e5e5 none repeat scroll 0 0;
-    border: 1px solid #ccc;
+    width: 100%;
 }

@@ -30,6 +30,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	font-size: 100%;
 	font-family: inherit;
 	vertical-align: baseline;
+	
 }        
 
 
@@ -144,9 +145,8 @@ nav {
 }
 
 #container {
-	padding: 0 10px 20px 10px;
 	margin: 0 auto;
-	width: 978px;
+	width: 100%;
 	overflow: hidden;
 }
 
@@ -186,11 +186,8 @@ header p a {
 }
 
 #content_main {
-	width: 685px;
-	float: left;
+	width: 100%;
 	font-size: 0.8em;
-	margin-bottom: 40px;
-	padding-top: 20px;
 }
 
 #content_main img.demo {
@@ -259,14 +256,10 @@ aside .highlight h3 a, aside .transbgr h3 a {
 aside select,
 input[type="text"],
 input[type="email"] {
-	border: 1px solid #999;
+	
 	padding: 6px 10px;
 
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
 }
-
 aside form.jplayer-community input {
 	margin-bottom: 10px;
 }
@@ -690,7 +683,6 @@ footer p a img{
 #content_main div.section, /* The rule for older than 2.0.0 parts of the site */
 #content_main > section, #content_main > article  {
 	display:block;
-	padding:1em 0;
 	margin-bottom: 20px;
 	overflow: hidden;
 	border-bottom:1px solid #f0f0f0;
